@@ -12,12 +12,12 @@ const {
   addUser
 } = require("../controllers/usersController");
 const {userValidationRules} = require('../lib/validation/userRules')
-const {validateInput} = require('../middleware/validator')
+const {validateInputs} = require('../middleware/validator')
 
 router
   .route("/")
   .get(getUsers)
-  .post(validateInput(userValidationRules), addUser);
+  .post(validateInputs(userValidationRules), addUser);
 
 router
   .route("/:id")
