@@ -18,7 +18,7 @@ router
 router
   .route("/:id")
   .get(getRecord)
-  .delete(deleteRecord)
-  .put(updateRecord);
+  .delete(auth, deleteRecord)
+  .put(auth, updateRecord);
 
 module.exports = router;

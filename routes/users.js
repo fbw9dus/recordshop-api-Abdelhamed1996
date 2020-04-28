@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const auth = require('../middleware/authenticator')
 const {userValidationRules} = require('../lib/validation/userRules')
 const {validateInputs} = require('../middleware/validator')
 const {
@@ -13,7 +14,7 @@ const {
 
 router
   .route("/")
-  .get(getUsers)
+  .get(auth, getUsers)
   .post(validateInputs(userValidationRules), addUser);
 
 router.route("/login")
@@ -21,8 +22,8 @@ router.route("/login")
 
 router
   .route("/:id")
-  .get(getUser)
-  .delete(deleteUser)
-  .put(updateUser);
+  .get(auth, getUser)
+  .delete(auth, deleteUser)
+  .put(auth, updateUser);
 
 module.exports = router;
