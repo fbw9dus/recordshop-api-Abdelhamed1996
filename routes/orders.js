@@ -4,6 +4,7 @@ const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 const adapter = new FileSync("data/db.json");
 const auth = require('../middleware/authenticator')
+const isAdmin = require('../middleware/rolesAuthenticater')
 const db = low(adapter);
 const {
   getOrders,
@@ -15,7 +16,7 @@ const {
 
 router
   .route("/")
-  .get(auth, getOrders)
+  .get(auth,isAdmin, getOrders)
   .post(auth, addOrder);
 
 router

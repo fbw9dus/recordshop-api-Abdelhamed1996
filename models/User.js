@@ -25,6 +25,12 @@ const UserSchema = new Schema(
       required: true,
       select: false
     },
+    role:{
+      type:String,
+      required: true,
+      enum:["Admin", "User"]
+    }
+    ,
     address: AddressSchema,
     orders: [{
       ref: "Order",
