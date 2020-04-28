@@ -1,7 +1,11 @@
 const validatorjs = require('validator')
 
-const myEmail = "tomiSlavDumancic@hotmail.com"
+const myEmail = "MaximNachname@googlemail.com"
 
 const sanitizedEmail = validatorjs.normalizeEmail(myEmail)
 
-console.log(sanitizedEmail)
+const name = " Maxim   "
+
+const sanitizedName = validatorjs.trim(name)
+
+console.log(sanitizedName)
