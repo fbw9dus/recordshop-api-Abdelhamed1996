@@ -46,8 +46,9 @@ exports.addUser = async (req, res, next) => {
     // Schreib hier code um die Daten des neuen Kunden aus req.body in der users-Collection zu speichern
     await User.init()
     const newUser = new User(user)
+    const token = newUser.generateAuthToken()
     await newUser.save()
-    res.status(200).send(newUser);
+    res.status(200).header('x-auth', token).send(newUser);
   } catch (error) {
     next(error)
   }
