@@ -6,6 +6,8 @@ const encryption = require('../lib/validation/encryption')
 exports.getUsers = async (req, res, next) => {
   // Schreib hier code um alle Kunden aus der users-Collection zu holen
   const users = await User.find()
+  .sort('lastName')
+  .limit(5)
   res.status(200).send(users);
 };
 
@@ -13,6 +15,8 @@ exports.getUser = async (req, res, next) => {
   const { id } = req.params;
   // Schreib hier code um den Kunden mit der id aus params aus der users-Collection zu holen
   const user = await User.findById(id)
+  .select('-password')
+  
   res.status(200).send(user);
 };
 
