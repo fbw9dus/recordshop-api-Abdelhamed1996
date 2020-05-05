@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 /** EXTERNAL DEPENDENCIES */
 const express = require("express");
 const path = require("path");
@@ -12,6 +14,8 @@ const recordsRouter = require("./routes/records");
 const ordersRouter = require("./routes/orders");
 const { setCors } = require("./middleware/security");
 
+
+
 /** INIT */
 const app = express();
 
@@ -19,7 +23,7 @@ const app = express();
 app.use(logger("dev"));
 
 /**CONNECT TO DB */
-mongoose.connect("mongodb://localhost:27017/record-shop", {
+mongoose.connect(process.env.DB, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
